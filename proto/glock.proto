@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "proto";
+
+package glock;
+
+service Locker {
+    rpc Lock(LockRequest) returns (LockReply) {}
+    rpc RLock(LockRequest) returns (LockReply) {}
+    rpc Unlock(LockRequest) returns (LockReply) {}
+}
+
+message LockRequest {
+    string resource = 1;
+    string requester = 2;
+    int32 expire = 3;
+}
+
+message LockReply {
+    bool ok = 1;
+}
